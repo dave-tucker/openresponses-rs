@@ -16,8 +16,8 @@ Add `openresponses` and `openresponses-axum` to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-openresponses = { git = "https://github.com/your-org/openresponses-rs" }
-openresponses-axum = { git = "https://github.com/your-org/openresponses-rs" }
+openresponses = { git = "https://github.com/dave-tucker/openresponses-rs" }
+openresponses-axum = { git = "https://github.com/dave-tucker/openresponses-rs" }
 ```
 
 Implement the trait and mount the router:
