@@ -1,0 +1,28 @@
+[package]
+name = "openresponses-axum"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "Axum router integration for the openresponses crate"
+keywords = ["openresponses", "axum", "llm", "ai", "server"]
+categories = ["web-programming", "asynchronous"]
+readme = "../../README.md"
+
+[dependencies]
+openresponses = { path = "../openresponses", version = "0.1" }
+axum = { version = "0.8", features = ["ws"] }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+futures = { workspace = true }
+tower = "0.5"
+http = "1"
+async-trait = { workspace = true }
+
+[dev-dependencies]
+openresponses-server = { path = "../openresponses-server" }
+tower = { version = "0.5", features = ["util"] }
+axum = { version = "0.8", features = ["ws"] }
+http-body-util = "0.1"

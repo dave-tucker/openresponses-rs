@@ -1,0 +1,28 @@
+[package]
+name = "openresponses-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+publish = false
+
+[lib]
+name = "openresponses_server"
+path = "src/lib.rs"
+
+[[bin]]
+name = "openresponses-server"
+path = "src/main.rs"
+
+[dependencies]
+openresponses = { path = "../openresponses", version = "0.1" }
+openresponses-axum = { path = "../openresponses-axum", version = "0.1" }
+axum = { version = "0.8", features = ["ws"] }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+futures = { workspace = true }
+uuid = { workspace = true }
+clap = { version = "4", features = ["derive", "env"] }
+async-trait = { workspace = true }
