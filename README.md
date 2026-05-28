@@ -65,7 +65,7 @@ async fn main() {
 }
 ```
 
-See [`crates/openresponses-axum/examples/echo_server.rs`](crates/openresponses-axum/examples/echo_server.rs) for a complete working example including streaming and WebSocket support.
+See [`openresponses-axum/examples/echo_server.rs`](openresponses-axum/examples/echo_server.rs) for a complete working example including streaming and WebSocket support.
 
 ## Key types
 
@@ -170,11 +170,11 @@ docker run -p 3000:3000 openresponses-server
 just check       # fmt + clippy + build + unit tests
 just fmt         # auto-format
 just run         # start mock server on :3000
-just compliance  # run 17 compliance tests in containers (requires podman + ../openresponses)
+just compliance  # run 17 compliance tests in containers
 just ci          # check + compliance
 ```
 
-Compliance tests require a checkout of [openresponses](https://github.com/openresponses/openresponses) at `../openresponses` and [Podman](https://podman.io).
+Compliance tests require a checkout of [openresponses](https://github.com/openresponses/openresponses) at `./openresponses-git` and either [Podman](https://podman.io) or Docker installed.
 
 ## Compliance
 
