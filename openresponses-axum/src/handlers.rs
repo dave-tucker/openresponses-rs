@@ -1,11 +1,11 @@
 use std::sync::Arc;
 
 use axum::{
+    Json,
     body::Body,
     extract::{State, WebSocketUpgrade},
     http::{HeaderMap, StatusCode},
     response::{IntoResponse, Response},
-    Json,
 };
 use futures::StreamExt;
 use serde_json::json;

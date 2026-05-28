@@ -17,7 +17,7 @@
 use std::sync::Arc;
 
 use async_trait::async_trait;
-use axum::{routing::get, Router};
+use axum::{Router, routing::get};
 use openresponses::{
     builder::ResponseBuilder,
     handler::{ResponseOrStream, ResponsesHandler},

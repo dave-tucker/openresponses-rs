@@ -1,16 +1,14 @@
 # --- Build stage ---
-FROM rust:1.85-slim AS builder
+FROM rust:1.95-slim AS builder
 
 WORKDIR /app
 COPY Cargo.toml Cargo.lock* ./
-COPY crates/ ./crates/
+COPY . ./
 
 RUN cargo build --release --bin openresponses-server
 
 # --- Runtime stage ---
-FROM debian:bookworm-slim
-
-RUN apt-get update && apt-get install -y ca-certificates curl && rm -rf /var/lib/apt/lists/*
+FROM fedora:44
 
 COPY --from=builder /app/target/release/openresponses-server /usr/local/bin/openresponses-server
 

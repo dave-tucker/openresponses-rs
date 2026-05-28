@@ -1,14 +1,14 @@
 [workspace]
 members = [
-    "crates/openresponses",
-    "crates/openresponses-axum",
-    "crates/openresponses-server",
+    "openresponses",
+    "openresponses-axum",
+    "openresponses-server",
 ]
 resolver = "2"
 
 [workspace.package]
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/dave-tucker/openresponses-rs"
 homepage = "https://www.openresponses.org"

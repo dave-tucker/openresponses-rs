@@ -19,7 +19,7 @@ services:
       server:
         condition: service_healthy
     volumes:
-      - ../openresponses:/app:ro
+      - ./openresponses-git:/app:ro
       - ./scripts/regexp-fix.js:/preload/regexp-fix.js:ro
     working_dir: /app
     command:

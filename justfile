@@ -1,5 +1,5 @@
-# Prefer podman if available, fall back to docker
-container_runtime := `command -v podman >/dev/null 2>&1 && echo podman || echo docker`
+# Prefer docker if available, fall back to podman
+container_runtime := `command -v docker >/dev/null 2>&1 && echo docker || echo podman`
 compose := container_runtime + " compose"
 
 # Run fmt check, clippy, build, and unit tests

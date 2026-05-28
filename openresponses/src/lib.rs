@@ -57,8 +57,8 @@ pub mod types;
 pub mod websocket;
 
 pub use builder::{
-    new_call_id, new_function_call_id, new_id, new_message_id, new_response_id, ResponseBuilder,
+    ResponseBuilder, new_call_id, new_function_call_id, new_id, new_message_id, new_response_id,
 };
 pub use handler::{EventStream, ResponseOrStream, ResponsesHandler};
 pub use types::*;
-pub use websocket::{events_for_response, WsSession};
+pub use websocket::{WsSession, events_for_response};

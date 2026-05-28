@@ -54,22 +54,22 @@ impl<H: ResponsesHandler> WsSession<H> {
 
             // Validate function_call_output items — call_ids must match function_calls
             // in the previous response output.
-            if let Some(prev) = &prev_response {
-                if let Some(ref input) = event.input {
-                    let items = match input {
-                        StringOrItems::Items(items) => items.as_slice(),
-                        StringOrItems::String(_) => &[],
-                    };
-                    if let Err(err_msg) = validate_function_call_outputs(items, prev) {
-                        // Evict from local store on failed validation
-                        self.local_store.remove(prev_id);
-                        return vec![WsOutbound::Error(WsError::new(
-                            400,
-                            "invalid_function_call_output",
-                            &err_msg,
-                            Some("input"),
-                        ))];
-                    }
+            if let Some(prev) = &prev_response
+                && let Some(ref input) = event.input
+            {
+                let items = match input {
+                    StringOrItems::Items(items) => items.as_slice(),
+                    StringOrItems::String(_) => &[],
+                };
+                if let Err(err_msg) = validate_function_call_outputs(items, prev) {
+                    // Evict from local store on failed validation
+                    self.local_store.remove(prev_id);
+                    return vec![WsOutbound::Error(WsError::new(
+                        400,
+                        "invalid_function_call_output",
+                        &err_msg,
+                        Some("input"),
+                    ))];
                 }
             }
         }
@@ -120,10 +120,8 @@ impl<H: ResponsesHandler> WsSession<H> {
                     }
                 }
                 // Store if store:false
-                if !store {
-                    if let Some(resp) = final_response {
-                        self.local_store.insert(resp.id.clone(), resp);
-                    }
+                if !store && let Some(resp) = final_response {
+                    self.local_store.insert(resp.id.clone(), resp);
                 }
                 out
             }
@@ -152,13 +150,13 @@ fn validate_function_call_outputs(
         .collect();
 
     for item in items {
-        if let ItemParam::FunctionCallOutput(fco) = item {
-            if !known_call_ids.contains(&fco.call_id.as_str()) {
-                return Err(format!(
-                    "function_call_output has call_id '{}' which does not match any function_call in the previous response.",
-                    fco.call_id
-                ));
-            }
+        if let ItemParam::FunctionCallOutput(fco) = item
+            && !known_call_ids.contains(&fco.call_id.as_str())
+        {
+            return Err(format!(
+                "function_call_output has call_id '{}' which does not match any function_call in the previous response.",
+                fco.call_id
+            ));
         }
     }
     Ok(())
