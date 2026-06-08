@@ -99,7 +99,7 @@ impl ResponseBuilder {
             tools: vec![],
             tool_choice: ToolChoice::Named("auto".to_string()),
             truncation: "disabled".to_string(),
-            parallel_tool_calls: true,
+            parallel_tool_calls: false,
             text: TextParam {
                 format: TextFormat {
                     r#type: "text".to_string(),
@@ -116,7 +116,7 @@ impl ResponseBuilder {
             },
             max_output_tokens: None,
             max_tool_calls: None,
-            store: true,
+            store: false,
             background: false,
             service_tier: "default".to_string(),
             metadata: Default::default(),
@@ -162,6 +162,11 @@ impl ResponseBuilder {
 
     pub fn store(mut self, store: bool) -> Self {
         self.store = store;
+        self
+    }
+
+    pub fn parallel_tool_calls(mut self, parallel_tool_calls: bool) -> Self {
+        self.parallel_tool_calls = parallel_tool_calls;
         self
     }
 
@@ -251,6 +256,8 @@ mod tests {
         assert_eq!(resp.status, "completed");
         assert!(resp.id.starts_with("resp_"));
         assert_eq!(resp.output.len(), 1);
+        assert!(!resp.store);
+        assert!(!resp.parallel_tool_calls);
         assert_eq!(resp.usage.input_tokens, 1);
         assert_eq!(resp.usage.output_tokens, 2);
     }

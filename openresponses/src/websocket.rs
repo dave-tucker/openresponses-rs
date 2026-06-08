@@ -30,7 +30,7 @@ impl<H: ResponsesHandler> WsSession<H> {
     /// Handle an incoming WebSocket `response.create` event.
     /// Returns a list of outbound messages (events + Done/Error).
     pub async fn handle_message(&mut self, event: WebSocketResponseCreateEvent) -> Vec<WsOutbound> {
-        let store = event.store.unwrap_or(true);
+        let store = event.store.unwrap_or(false);
         let previous_response_id = event.previous_response_id.clone();
 
         // Validate previous_response_id

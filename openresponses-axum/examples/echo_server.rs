@@ -81,7 +81,7 @@ impl ResponsesHandler for EchoHandler {
 
         let usage = UsageResource::new(1, 1);
         let resp = ResponseBuilder::new(&req.model)
-            .store(req.store.unwrap_or(true))
+            .store(req.store.unwrap_or(false))
             .build_text(format!("Echo: {echo_text}"), usage);
 
         if req.stream.unwrap_or(false) {

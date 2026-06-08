@@ -51,7 +51,7 @@ fn default_response_resource(
         tools: vec![],
         tool_choice: ToolChoice::Named("auto".to_string()),
         truncation: "disabled".to_string(),
-        parallel_tool_calls: true,
+        parallel_tool_calls: false,
         text: TextParam {
             format: TextFormat {
                 r#type: "text".to_string(),
@@ -127,7 +127,7 @@ impl MockHandler {
     fn generate_response(&self, req: &CreateResponseBody) -> ResponseResource {
         let id = new_id("resp");
         let output = self.generate_output(req);
-        let store = req.store.unwrap_or(true);
+        let store = req.store.unwrap_or(false);
         let mut resp = default_response_resource(id, req.model.clone(), output, store);
         resp.previous_response_id = req.previous_response_id.clone();
         resp.instructions = req.instructions.clone();
@@ -167,7 +167,7 @@ impl ResponsesHandler for MockHandler {
         _auth: Option<String>,
     ) -> Result<ResponseOrStream, MockError> {
         let resp = self.generate_response(&req);
-        let store = req.store.unwrap_or(true);
+        let store = req.store.unwrap_or(false);
 
         // Store globally if store:true
         if store {
@@ -358,7 +358,8 @@ mod tests {
     #[tokio::test]
     async fn test_get_response_stored() {
         let handler = MockHandler::new();
-        let req = make_req("gpt-4o-mini", "Store me");
+        let mut req = make_req("gpt-4o-mini", "Store me");
+        req.store = Some(true);
         let result = handler.create_response(req, None).await.unwrap();
         let resp_id = match result {
             ResponseOrStream::Response(r) => r.id.clone(),
