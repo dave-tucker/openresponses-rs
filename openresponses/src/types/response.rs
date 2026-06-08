@@ -101,7 +101,7 @@ pub struct ResponseResource {
     pub frequency_penalty: f64,
     pub top_logprobs: u32,
     pub temperature: f64,
-    pub reasoning: ReasoningConfig,
+    pub reasoning: Option<ReasoningConfig>,
     pub usage: UsageResource,
     pub max_output_tokens: Option<u32>,
     pub max_tool_calls: Option<u32>,
@@ -152,7 +152,7 @@ mod tests {
         "frequency_penalty": 0.0,
         "top_logprobs": 0,
         "temperature": 1.0,
-        "reasoning": {"effort": null, "summary": null},
+        "reasoning": null,
         "usage": {
             "input_tokens": 1,
             "output_tokens": 2,

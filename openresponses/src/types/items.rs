@@ -1,20 +1,20 @@
 use serde::{Deserialize, Serialize};
 
-// ---------------------------------------------------------------------------
-// Content parts
-// ---------------------------------------------------------------------------
-
 /// URL citation annotation on output text.
 #[allow(dead_code)]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UrlCitation {
     #[serde(rename = "type")]
-    pub r#type: String, // "url_citation"
+    pub r#type: String,
     pub start_index: u32,
     pub end_index: u32,
     pub url: String,
     pub title: String,
 }
+
+// ---------------------------------------------------------------------------
+// Content parts
+// ---------------------------------------------------------------------------
 
 /// A content part that can appear in input or output messages.
 #[allow(dead_code)]
@@ -372,6 +372,7 @@ mod tests {
             OutputItem::Message(m) => {
                 assert_eq!(m.id, "msg_1");
                 assert_eq!(m.status, "completed");
+                assert!(matches!(m.content[0], OutputContent::OutputText(_)));
             }
             _ => panic!("expected message"),
         }

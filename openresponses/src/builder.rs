@@ -192,6 +192,12 @@ impl ResponseBuilder {
         usage: UsageResource,
     ) -> ResponseResource {
         let now = unix_now();
+        let reasoning = if self.reasoning.effort.is_none() && self.reasoning.summary.is_none() {
+            None
+        } else {
+            Some(self.reasoning)
+        };
+
         ResponseResource {
             id: self.id,
             object: "response".to_string(),
@@ -214,7 +220,7 @@ impl ResponseBuilder {
             frequency_penalty: self.frequency_penalty,
             top_logprobs: self.top_logprobs,
             temperature: self.temperature,
-            reasoning: self.reasoning,
+            reasoning,
             usage,
             max_output_tokens: self.max_output_tokens,
             max_tool_calls: self.max_tool_calls,

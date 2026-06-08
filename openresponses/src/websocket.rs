@@ -372,10 +372,7 @@ mod tests {
             frequency_penalty: 0.0,
             top_logprobs: 0,
             temperature: 1.0,
-            reasoning: ReasoningConfig {
-                effort: None,
-                summary: None,
-            },
+            reasoning: None,
             usage: UsageResource {
                 input_tokens: 1,
                 output_tokens: 2,

@@ -12,7 +12,7 @@ use openresponses::{
     types::{
         CompactResource, CompactResponseMethodPublicBody, CompactionOutputItem, CreateResponseBody,
         FunctionCallItem, InputTokensDetails, MessageOutputItem, OutputContent, OutputItem,
-        OutputTextContent, OutputTokensDetails, ReasoningConfig, ResponseResource, TextFormat,
+        OutputTextContent, OutputTokensDetails, ResponseResource, TextFormat,
         TextParam, ToolChoice, UsageResource,
     },
     websocket::events_for_response,
@@ -62,10 +62,7 @@ fn default_response_resource(
         frequency_penalty: 0.0,
         top_logprobs: 0,
         temperature: 1.0,
-        reasoning: ReasoningConfig {
-            effort: None,
-            summary: None,
-        },
+        reasoning: None,
         usage: UsageResource {
             input_tokens: 1,
             output_tokens: 2,
