@@ -16,6 +16,25 @@ pub struct UrlCitation {
 // Content parts
 // ---------------------------------------------------------------------------
 
+/// A token log probability.
+#[allow(dead_code)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TopLogProb {
+    pub token: String,
+    pub logprob: f64,
+    pub bytes: Vec<u32>,
+}
+
+/// A token log probability with alternatives.
+#[allow(dead_code)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LogProb {
+    pub token: String,
+    pub logprob: f64,
+    pub bytes: Vec<u32>,
+    pub top_logprobs: Vec<TopLogProb>,
+}
+
 /// A content part that can appear in input or output messages.
 #[allow(dead_code)]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -180,6 +199,8 @@ pub struct OutputTextContent {
     pub text: String,
     #[serde(default)]
     pub annotations: Vec<UrlCitation>,
+    #[serde(default)]
+    pub logprobs: Vec<LogProb>,
 }
 
 /// Refusal content in an output message.
@@ -372,7 +393,10 @@ mod tests {
             OutputItem::Message(m) => {
                 assert_eq!(m.id, "msg_1");
                 assert_eq!(m.status, "completed");
-                assert!(matches!(m.content[0], OutputContent::OutputText(_)));
+                match &m.content[0] {
+                    OutputContent::OutputText(text) => assert!(text.logprobs.is_empty()),
+                    _ => panic!("expected output_text"),
+                }
             }
             _ => panic!("expected message"),
         }
@@ -382,6 +406,7 @@ mod tests {
         assert_eq!(v2["type"], "message");
         assert_eq!(v2["id"], "msg_1");
         assert_eq!(v2["content"][0]["type"], "output_text");
+        assert_eq!(v2["content"][0]["logprobs"], serde_json::json!([]));
     }
 
     #[test]

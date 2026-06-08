@@ -303,8 +303,7 @@ mod tests {
     fn test_stream_event_type_tag() {
         // Test that the type tag is correctly serialized
         use super::super::response::{
-            InputTokensDetails, OutputTokensDetails, TextFormat, TextParam,
-            UsageResource,
+            InputTokensDetails, OutputTokensDetails, TextFormat, TextParam, UsageResource,
         };
         use super::super::tools::ToolChoice;
 

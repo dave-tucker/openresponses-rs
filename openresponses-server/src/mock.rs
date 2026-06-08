@@ -12,8 +12,8 @@ use openresponses::{
     types::{
         CompactResource, CompactResponseMethodPublicBody, CompactionOutputItem, CreateResponseBody,
         FunctionCallItem, InputTokensDetails, MessageOutputItem, OutputContent, OutputItem,
-        OutputTextContent, OutputTokensDetails, ResponseResource, TextFormat,
-        TextParam, ToolChoice, UsageResource,
+        OutputTextContent, OutputTokensDetails, ResponseResource, TextFormat, TextParam,
+        ToolChoice, UsageResource,
     },
     websocket::events_for_response,
 };
@@ -114,6 +114,7 @@ impl MockHandler {
                 content: vec![OutputContent::OutputText(OutputTextContent {
                     text: "Hello! I'm ready to help.".to_string(),
                     annotations: vec![],
+                    logprobs: vec![],
                 })],
                 status: "completed".to_string(),
                 phase: None,

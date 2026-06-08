@@ -353,6 +353,7 @@ mod tests {
                 content: vec![OutputContent::OutputText(OutputTextContent {
                     text: "Hello!".to_string(),
                     annotations: vec![],
+                    logprobs: vec![],
                 })],
                 status: "completed".to_string(),
                 phase: None,

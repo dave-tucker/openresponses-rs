@@ -243,6 +243,7 @@ impl ResponseBuilder {
             content: vec![OutputContent::OutputText(OutputTextContent {
                 text,
                 annotations: vec![],
+                logprobs: vec![],
             })],
             status: "completed".to_string(),
             phase: None,
