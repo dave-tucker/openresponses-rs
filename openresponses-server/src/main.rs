@@ -2,7 +2,6 @@ use std::sync::Arc;
 
 use axum::{Router, routing::get};
 use clap::Parser;
-
 use openresponses_server::MockHandler;
 
 #[derive(Parser, Debug)]

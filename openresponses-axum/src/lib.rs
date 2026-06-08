@@ -26,10 +26,8 @@ use axum::{
     Router,
     routing::{get, post},
 };
-
-use openresponses::handler::ResponsesHandler;
-
 pub use handlers::{http_compact, http_create_response, ws_upgrade};
+use openresponses::handler::ResponsesHandler;
 
 /// Build an Axum router for the OpenResponses API.
 ///
@@ -46,8 +44,10 @@ pub fn router<H: ResponsesHandler>(handler: Arc<H>) -> Router {
 mod tests {
     use std::sync::Arc;
 
-    use axum::body::Body;
-    use axum::http::{Request, StatusCode};
+    use axum::{
+        body::Body,
+        http::{Request, StatusCode},
+    };
     use http_body_util::BodyExt;
     use openresponses_server::MockHandler;
     use tower::ServiceExt;

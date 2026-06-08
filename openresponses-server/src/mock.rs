@@ -1,12 +1,11 @@
-use std::collections::HashMap;
-use std::sync::Arc;
-use std::time::{SystemTime, UNIX_EPOCH};
+use std::{
+    collections::HashMap,
+    sync::Arc,
+    time::{SystemTime, UNIX_EPOCH},
+};
 
 use async_trait::async_trait;
 use futures::stream;
-use tokio::sync::RwLock;
-use uuid::Uuid;
-
 use openresponses::{
     handler::{ResponseOrStream, ResponsesHandler},
     types::{
@@ -17,6 +16,8 @@ use openresponses::{
     },
     websocket::events_for_response,
 };
+use tokio::sync::RwLock;
+use uuid::Uuid;
 
 fn now_secs() -> i64 {
     SystemTime::now()
@@ -246,8 +247,9 @@ fn base64_encode(data: &[u8]) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use openresponses::types::StringOrItems;
+
+    use super::*;
 
     fn make_req(model: &str, input: &str) -> CreateResponseBody {
         CreateResponseBody {

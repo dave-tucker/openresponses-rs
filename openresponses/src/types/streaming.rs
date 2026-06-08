@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-use super::items::{ContentPart, OutputItem, UrlCitation};
-use super::response::ResponseResource;
+use super::{
+    items::{ContentPart, OutputItem, UrlCitation},
+    response::ResponseResource,
+};
 
 // ---------------------------------------------------------------------------
 // Shared event structures
@@ -302,10 +304,12 @@ mod tests {
     #[test]
     fn test_stream_event_type_tag() {
         // Test that the type tag is correctly serialized
-        use super::super::response::{
-            InputTokensDetails, OutputTokensDetails, TextFormat, TextParam, UsageResource,
+        use super::super::{
+            response::{
+                InputTokensDetails, OutputTokensDetails, TextFormat, TextParam, UsageResource,
+            },
+            tools::ToolChoice,
         };
-        use super::super::tools::ToolChoice;
 
         let resp = ResponseResource {
             id: "resp_1".to_string(),

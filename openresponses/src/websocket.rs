@@ -1,12 +1,13 @@
-use std::collections::HashMap;
-use std::sync::Arc;
+use std::{collections::HashMap, sync::Arc};
 
 use futures::StreamExt;
 
-use crate::handler::{ResponseOrStream, ResponsesHandler};
-use crate::types::{
-    CreateResponseBody, ItemParam, ResponseResource, StreamEvent, StringOrItems,
-    WebSocketResponseCreateEvent, WsError, WsOutbound,
+use crate::{
+    handler::{ResponseOrStream, ResponsesHandler},
+    types::{
+        CreateResponseBody, ItemParam, ResponseResource, StreamEvent, StringOrItems,
+        WebSocketResponseCreateEvent, WsError, WsOutbound,
+    },
 };
 
 /// A WebSocket session that manages per-connection state.

@@ -1,8 +1,10 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-use super::items::OutputItem;
-use super::tools::{FunctionTool, ToolChoice};
+use super::{
+    items::OutputItem,
+    tools::{FunctionTool, ToolChoice},
+};
 
 /// Usage statistics for a response.
 #[allow(dead_code)]

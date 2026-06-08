@@ -1,5 +1,4 @@
-use std::fmt;
-use std::pin::Pin;
+use std::{fmt, pin::Pin};
 
 use async_trait::async_trait;
 use futures::Stream;

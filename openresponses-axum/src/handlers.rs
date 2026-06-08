@@ -8,8 +8,6 @@ use axum::{
     response::{IntoResponse, Response},
 };
 use futures::StreamExt;
-use serde_json::json;
-
 use openresponses::{
     handler::{ResponseOrStream, ResponsesHandler},
     types::{
@@ -18,6 +16,7 @@ use openresponses::{
     },
     websocket::WsSession,
 };
+use serde_json::json;
 
 // ---------------------------------------------------------------------------
 // Helper: extract Bearer token from Authorization header

@@ -1,9 +1,11 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-use super::items::ItemParam;
-use super::response::{ReasoningConfig, TextParam};
-use super::tools::{FunctionTool, ToolChoice};
+use super::{
+    items::ItemParam,
+    response::{ReasoningConfig, TextParam},
+    tools::{FunctionTool, ToolChoice},
+};
 
 /// A string or a list of input items.
 #[allow(dead_code)]
